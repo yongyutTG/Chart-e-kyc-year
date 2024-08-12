@@ -46,7 +46,7 @@ $response = [
     "labels" => $labels,
     "datasets" => [
         [
-            "label" => "จำนวนสมาชิกที่ทำ E-KYC ต่อเดือน",
+            "label" => "จำนวนสมาชิกที่ทำ E-KYC ต่อเดือนในปี",
             "backgroundColor" => "rgba(35,137,231,0.7)",
             "borderColor" => "rgba(35,137,231,1)",
             "borderWidth" => 1,

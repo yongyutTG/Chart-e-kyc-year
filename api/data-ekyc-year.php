@@ -9,15 +9,12 @@ $dbname = "chart_example";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// รับค่า year จาก query parameter
 $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
 
-// ดึงข้อมูลจากตาราง ekyc_detail เฉพาะปีที่เลือก
 $sql = "SELECT DATE_FORMAT(date_ekyc, '%m') as month, COUNT(DISTINCT mem_id) as count
         FROM ekyc_detail
         WHERE YEAR(date_ekyc) = ?
@@ -33,12 +30,14 @@ $months = ["01" => "มกราคม", "02" => "กุมภาพันธ์
            "05" => "พฤษภาคม", "06" => "มิถุนายน", "07" => "กรกฎาคม", "08" => "สิงหาคม",
            "09" => "กันยายน", "10" => "ตุลาคม", "11" => "พฤศจิกายน", "12" => "ธันวาคม"];
 
+$total_count = 0;  // ตัวแปรสำหรับเก็บยอดรวมทั้งหมด
+
 while ($row = $result->fetch_assoc()) {
     $monthly_counts[$months[$row['month']]] = $row['count'];
+    $total_count += $row['count'];  // บวกจำนวนสมาชิกในแต่ละเดือนเข้ากับยอดรวม
 }
 $conn->close();
 
-// เตรียมข้อมูลสำหรับ Chart.js
 $labels = array_keys($monthly_counts);
 $values = array_values($monthly_counts);
 
@@ -52,7 +51,8 @@ $response = [
             "borderWidth" => 1,
             "data" => $values
         ]
-    ]
+    ],
+    "total_count" => $total_count  // ส่งยอดรวมทั้งหมดไปยัง JavaScript
 ];
 
 echo json_encode($response);

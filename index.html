@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bar Chart by Year with Real-Time Updates</title>
@@ -55,7 +56,7 @@
         let myChart;  // ใช้ตัวแปรสำหรับเก็บข้อมูลกราฟ
 
         function fetchDataAndUpdateChart(year) {
-            fetch(`data-ekyc-year.php?year=${year}`)
+            fetch(`api/data-ekyc-year.php?year=${year}`)
                 .then(response => response.json())
                 .then(data => {
                     const ctx = document.getElementById('myChart').getContext('2d');

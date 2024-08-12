@@ -1,8 +1,7 @@
 <?php
-// data-ekyc-year.php
+
 header('Content-Type: application/json');
 
-// เชื่อมต่อฐานข้อมูล
 $servername = "127.0.0.1";
 $username = "root";
 $password = "12345678";
@@ -10,7 +9,7 @@ $dbname = "chart_example";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// ตรวจสอบการเชื่อมต่อ
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -37,8 +36,6 @@ $months = ["01" => "มกราคม", "02" => "กุมภาพันธ์
 while ($row = $result->fetch_assoc()) {
     $monthly_counts[$months[$row['month']]] = $row['count'];
 }
-
-// ปิดการเชื่อมต่อฐานข้อมูล
 $conn->close();
 
 // เตรียมข้อมูลสำหรับ Chart.js

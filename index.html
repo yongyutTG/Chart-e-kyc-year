@@ -20,6 +20,7 @@
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
                 <option value="2024">2024</option>
+                <option value="2025">2025</option>
             </select>
         </div>   
         <canvas id="myChart"></canvas>  
@@ -37,6 +38,8 @@
                     if (myChart) {
                         myChart.data.labels = data.labels;
                         myChart.data.datasets[0].data = data.datasets[0].data;
+                        myChart.data.datasets[1].data = data.datasets[1].data;
+                        myChart.data.datasets[2].data = data.datasets[2].data;
                         myChart.update();
                     } else {
                         myChart = new Chart(ctx, {

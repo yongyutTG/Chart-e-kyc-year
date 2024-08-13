@@ -2,7 +2,7 @@
   /* กำหนดความกว้างและความยาวของ select */
   #yearSelect {
     width: 150px; /* กำหนดความกว้างของ select */
-    height: 10px; /* กำหนดความสูงของ select */
+    height: 30px; /* กำหนดความสูงของ select */
     font-size: 14px; /* ขนาดฟอนต์ */
 }
 

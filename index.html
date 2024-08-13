@@ -23,6 +23,7 @@
         </div>
     </div>
     <p id="totalMembers" class="text-center mt-3"></p>
+    <p id="updateTime" class="text-center mt-2"></p> <!-- แสดงเวลาที่อัปเดตล่าสุด -->
     <div style="width: 50%; margin: auto;">
         <canvas id="myChart"></canvas>  
     </div>
@@ -87,9 +88,22 @@
                         });
                     }
                     document.getElementById('totalMembers').innerText = `ยอดรวมทั้งหมดในปี: ${data.total_count} คน`;
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        }
+                     // อัปเดตวันที่และเวลาที่แสดงบน HTML
+                    const currentTime = new Date();
+                    const formattedDate = currentTime.toLocaleDateString('th-TH', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    const formattedTime = currentTime.toLocaleTimeString('th-TH', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+                    document.getElementById('updateTime').innerText = `อัปเดตล่าสุดเมื่อ: ${formattedDate} เวลา ${formattedTime}`;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+            }
 
         function updateChart() {
             const selectedYear = document.getElementById('yearSelect').value;
